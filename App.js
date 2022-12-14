@@ -1,20 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ContextProvider } from "./store";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ContactsPage from "./ContactsPage";
+import HomePage from "./HomePage";
+import RemindersPage from "./RemindersPage";
 
-export default function App() {
+// const StackNavigator = createNativeStackNavigator(
+//   {
+//     Home: { screen: Home },
+//     Screen1: {
+//       screen: (
+//         <SafeAreaView>
+//           <AddContact></AddContact>
+//           <ContactList></ContactList>
+//         </SafeAreaView>
+//       ),
+//     },
+//   },
+//   {
+//     initialRouteName: "Home",
+//   }
+// );
+
+const Stack = createNativeStackNavigator();
+
+// App component
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <ContextProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Contacts" component={ContactsPage} />
+          <Stack.Screen name="Reminders" component={RemindersPage} />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+          <Stack.Screen name="Home" component={HomePage} options={{ headerShown: false }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ContextProvider>
+  );
+};
+
+export default App;
