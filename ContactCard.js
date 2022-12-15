@@ -3,6 +3,7 @@ import React from "react";
 import { AppContext } from "./store";
 import { useContext } from "react";
 import { useState } from "react";
+import { saveData } from "./utils";
 
 const ContactCard = ({ contact }) => {
   const { contacts, setContacts } = useContext(AppContext);
@@ -11,15 +12,18 @@ const ContactCard = ({ contact }) => {
   const [currentPhone, setCurrentPhone] = useState(contact.phone);
   const [currentAddress, setCurrentAddress] = useState(contact.address);
 
-  const deleteContact = () => {
-    setContacts(contacts.filter((contactW) => contactW.id != contact.id));
+  const deleteContact = async () => {
+    const copy = contacts.filter((contactW) => contactW.id != contact.id);
+    setContacts(copy);
+    await saveData(copy);
   };
-  function saveEdits() {
+  async function saveEdits() {
     const copy = contacts.concat([]);
     let index = copy.findIndex((el) => el.id === contact.id);
     copy[index] = { name: currentName, phone: currentPhone, address: currentAddress, id: copy[index].id };
     setContacts(copy);
     setEditing(false);
+    await saveData(copy);
   }
   return (
     <View style={styles.container}>
@@ -77,6 +81,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignItems: "center",
     marginVertical: 5,
+    borderWidth: 1,
+    padding: 5,
+    borderRadius: 5,
+    backgroundColor: "white",
   },
 });
 export default ContactCard;

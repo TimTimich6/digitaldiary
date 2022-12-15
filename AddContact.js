@@ -3,6 +3,7 @@ import { View, TextInput, Button, Text, SafeAreaView, StyleSheet, TouchableOpaci
 import { AppContext, ContextProvider } from "./store";
 import "react-native-get-random-values";
 import { v4 as uuid } from "uuid";
+import { saveData } from "./utils";
 const AddContact = () => {
   const [currentName, setcurrentName] = useState("");
   const [currentPhone, setCurrentPhone] = useState("");
@@ -10,13 +11,14 @@ const AddContact = () => {
 
   const { contacts, setContacts } = useContext(AppContext);
 
-  const addcontact = () => {
+  const addcontact = async () => {
     const id = uuid();
     setContacts([...contacts, { name: currentName, phone: currentPhone, address: currentAddress, id }]);
     setcurrentName("");
     setCurrentPhone("");
 
     setCurrentAddress("");
+    await saveData(contacts);
   };
 
   return (

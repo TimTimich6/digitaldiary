@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Timofey Obraztsov",
+    "id": "1",
+    "address": "23 Kim Lane",
+    "phone": "1800832323"
+  },
+  {
+    "name": "Hassan Twiet",
+    "id": "2",
+    "address": "13 Computer Road",
+    "phone": "310643920"
+  },
+  {
+    "name": "Kyle Shibao",
+    "id": "3",
+    "address": "Android boulevard",
+    "phone": "238923823"
+  },
+  {
+    "name": "Jason Wiemels",
+    "id": "4",
+    "address": "Government avenida",
+    "phone": "439894802"
+  }
+]

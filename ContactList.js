@@ -9,12 +9,25 @@ const ContactList = () => {
   return (
     <ScrollView>
       {contacts.length > 0 && <Text style={{ fontSize: 30, fontWeight: "800", margin: 5 }}>Contact List</Text>}
-      {contacts.map((contact) => (
-        <ContactCard contact={contact} key={contact.id} />
-      ))}
+      {contacts
+        .concat([])
+        .sort(compare)
+        .map((contact) => (
+          <ContactCard contact={contact} key={contact.id} />
+        ))}
     </ScrollView>
   );
 };
+
+function compare(a, b) {
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+}
 
 const styles = StyleSheet.create({
   container: {

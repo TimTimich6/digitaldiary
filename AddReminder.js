@@ -19,10 +19,13 @@ const AddReminder = () => {
     setCurrentDate(currentT);
   };
   const addReminder = () => {
-    const id = uuid();
-    console.log({ name: currentName, time: currentTime, date: currentDate, id });
-    setReminders([...reminders, { name: currentName, time: currentTime, id, date: currentDate }]);
-    setcurrentName("");
+    if (combineDateTime(currentTime, currentDate).getTime() - new Date().getTime() > 0) {
+      const id = uuid();
+      console.log({ name: currentName, time: currentTime, date: currentDate, id });
+      setReminders([...reminders, { name: currentName, time: currentTime, id, date: currentDate }]);
+      setcurrentName("");
+    }
+
     // setCurrentTime(new Date(Date.now() + 1000 * 60 * 60));
   };
 
@@ -71,3 +74,15 @@ const styles = StyleSheet.create({
   },
 });
 export default AddReminder;
+
+function combineDateTime(timeDate, actualDate) {
+  var year = actualDate.getFullYear();
+  var month = actualDate.getMonth();
+  var day = actualDate.getDate();
+
+  var hour = timeDate.getHours();
+  var minute = timeDate.getMinutes();
+  var second = timeDate.getSeconds();
+
+  return new Date(year, month, day, hour, minute, second);
+}

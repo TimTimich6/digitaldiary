@@ -33,7 +33,7 @@ const App = () => {
           <Stack.Screen name="Contacts" component={ContactsPage} />
           <Stack.Screen name="Reminders" component={RemindersPage} />
 
-          <Stack.Screen name="Home" component={HomePage} options={{ headerShown: false }} />
+          <Stack.Screen name="Home" component={HomePage} />
         </Stack.Navigator>
       </NavigationContainer>
     </ContextProvider>
@@ -41,3 +41,4 @@ const App = () => {
 };
 
 export default App;
+// options={{ headerShown: false }}

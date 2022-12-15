@@ -30,15 +30,15 @@ const ReminderCard = ({ reminder }) => {
       setTimer((lastTimerCount) => {
         // lastTimerCount <= 1 && clearInterval(interval);
         if (lastTimerCount <= 1) {
-          deleteReminder();
-          alert("It is time for" + reminder.name);
+          alert("Reminder for: " + reminder.name);
           clearInterval(interval);
+          deleteReminder();
         }
         return lastTimerCount - 1;
       });
     }, 1000); //each count lasts for a second
     return () => clearInterval(interval);
-  }, []);
+  }, [currentTime, currentDate]);
   const deleteReminder = () => {
     setReminders(reminders.filter((reminderW) => reminderW.id != reminder.id));
   };

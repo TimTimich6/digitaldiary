@@ -4,12 +4,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomePage = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={{ flex: 1, alignItems: "center" }}>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Contacts")}>
-        <Text style={styles.buttonText}>Go to Contacts</Text>
+        <Text style={styles.buttonText}>Contacts</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Reminders")}>
-        <Text style={styles.buttonText}>Go to Reminders</Text>
+        <Text style={styles.buttonText}>Reminders</Text>
       </TouchableOpacity>
     </View>
   );
@@ -19,7 +19,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#C9CD89",
     borderRadius: 10,
     padding: 10,
-    marginVertical: 10,
+    marginVertical: 5,
+    width: "90%",
+    borderColor: "grey",
+    borderWidth: 1,
   },
   buttonText: {
     fontWeight: "800",
